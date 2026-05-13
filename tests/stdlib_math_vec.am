@@ -1,0 +1,68 @@
+// Test sample for amalgame-math-vec.
+//
+// Avoid the bare keyword "ns"+"pace" in comments.
+
+namespace UserApp
+
+import Amalgame.Math.Vec
+
+public class Program {
+    public static void Main() {
+        let a = new Vec3(1.0, 2.0, 3.0)
+        if (a.GetX() == 1.0 && a.GetY() == 2.0 && a.GetZ() == 3.0) {
+            Console.WriteLine("[PASS] vec3 ctor")
+        } else {
+            Console.WriteLine("[FAIL] vec3 ctor")
+        }
+
+        let b = new Vec3(4.0, 5.0, 6.0)
+        let sum: Vec3 = a.Add(b)
+        if (sum.GetX() == 5.0 && sum.GetY() == 7.0 && sum.GetZ() == 9.0) {
+            Console.WriteLine("[PASS] vec3 add")
+        } else {
+            Console.WriteLine("[FAIL] vec3 add")
+        }
+
+        let dot: float = a.Dot(b)
+        if (dot == 32.0) {
+            Console.WriteLine("[PASS] vec3 dot")
+        } else {
+            Console.WriteLine("[FAIL] vec3 dot")
+        }
+
+        let cross: Vec3 = a.Cross(b)
+        if (cross.GetX() == -3.0 && cross.GetY() == 6.0 && cross.GetZ() == -3.0) {
+            Console.WriteLine("[PASS] vec3 cross")
+        } else {
+            Console.WriteLine("[FAIL] vec3 cross")
+        }
+
+        // length(1,2,3) = sqrt(14) ≈ 3.7417
+        let len: float = a.Length()
+        if (len > 3.74 && len < 3.75) {
+            Console.WriteLine("[PASS] vec3 length")
+        } else {
+            Console.WriteLine("[FAIL] vec3 length")
+        }
+
+        let v4 = new Vec4(1.0, 2.0, 3.0, 4.0)
+        let dot4: float = v4.Dot(v4)
+        if (dot4 == 30.0) {
+            Console.WriteLine("[PASS] vec4 dot")
+        } else {
+            Console.WriteLine("[FAIL] vec4 dot")
+        }
+
+        let id: Mat4 = Mat4.Identity()
+        if (id.Get(0, 0) == 1.0 && id.Get(1, 1) == 1.0 && id.Get(2, 2) == 1.0 && id.Get(3, 3) == 1.0) {
+            Console.WriteLine("[PASS] mat4 identity diag")
+        } else {
+            Console.WriteLine("[FAIL] mat4 identity diag")
+        }
+        if (id.Get(0, 1) == 0.0 && id.Get(1, 0) == 0.0) {
+            Console.WriteLine("[PASS] mat4 identity off")
+        } else {
+            Console.WriteLine("[FAIL] mat4 identity off")
+        }
+    }
+}

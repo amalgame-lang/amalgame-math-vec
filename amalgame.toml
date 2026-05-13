@@ -1,0 +1,30 @@
+# Package manifest — amalgame-math-vec
+#
+# Pure-Amalgame Vec3 / Vec4 / Mat4 facade — column-major 4×4
+# matrix math (OpenGL convention), scalar 3D and 4D vectors,
+# translate / scale / rotate primitives. Originally bundled in
+# amc's src/stdlib/math_vec.am (with the runtime impl in
+# runtime/Amalgame_Math_Vec.h); extracted into this external
+# package as part of the framework split (project F follow-up,
+# amc >= 0.7.6).
+#
+# Companion package: `amalgame-math` ships sqrt/sin/cos and the
+# rest of the `Amalgame.Math` namespace.
+
+[package]
+name              = "amalgame-math-vec"
+version           = "0.1.0"
+license           = "Apache-2.0"
+description       = "Pure-Amalgame Vec3/Vec4/Mat4 — 3D math for graphics/games (column-major OpenGL convention)."
+authors           = ["Bastien Mouget"]
+required-amalgame = ">=0.7.6"
+schema-version    = 1
+
+[stdlib]
+# Primary class. The facade also exposes Vec4 and Mat4 as sibling
+# classes under the same namespace, all visible after `import
+# Amalgame.Math.Vec`.
+class     = "Vec3"
+header    = "facade-stub.h"
+namespace = "Amalgame.Math.Vec"
+facade    = "facade.am"
